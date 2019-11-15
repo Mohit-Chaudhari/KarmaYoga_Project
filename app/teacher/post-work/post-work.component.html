@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidepanel></app-sidepanel>
+        </div>
+        <div class="col-md-8">
+            
+            <h3 class="text-center text-secondary">KarmaYoga Post Work</h3>
+            <form [formGroup]="this.PostWorkService.form" (ngSubmit)="onSubmit()">
+
+                <input type="hidden" formControlName="$key">
+
+                <!--Name-->
+                <div class="form-group">
+                    <label>Name : </label>
+                    <input formControlName="TeacherName" class="form-control" type="text">
+                </div>
+
+                <!--Working Department-->
+                <div class="form-group">
+                    <label>Working Department : </label>
+                    <select formControlName="WorkingDepartment" [ngClass]="{'is-invalid':formControls.WorkingDepartment.touched && formControls.WorkingDepartment.errors}" class="form-control">
+                        <option *ngFor="let value of DepartmentArray">{{value.departmentname}}</option>
+                    </select>
+                </div>
+
+                <!--Work Description-->
+                <div class="form-group">
+                    <label>Post work description : </label>
+                    <textarea formControlName="WrokDescription" [ngClass]="{'is-invalid':formControls.WrokDescription.touched && formControls.WrokDescription.errors}" rows="4" cols="50" class="form-control" placeholder="Enter work description here..."></textarea>
+                </div>
+
+                <!--Start time-->
+                <div class="form-group">
+                    <label>Work start time : </label>
+                    <input formControlName="StartTime" [ngClass]="{'is-invalid':formControls.StartTime.touched && formControls.StartTime.errors}" type="time" class="form-control timepicker">
+                </div>
+
+                <!--End time-->
+                <div class="form-group">
+                    <label>Work end time : </label>
+                    <input formControlName="EndTime" [ngClass]="{'is-invalid':formControls.EndTime.touched && formControls.EndTime.errors}" type="time" class="form-control timepicker">
+                </div>
+
+                <!--Submit Button-->
+                <div class="form-group text-center">
+                    <button class="btn btn-success" [disabled]="!this.PostWorkService.form.valid">Post Work description</button>
+                </div>
+
+            </form>
+
+            <div class="alert alert-info"  *ngIf="showSuccessMessage">
+                Congratulations your work has been published over KarmaYoga work finding portal.
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

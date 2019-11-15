@@ -1,0 +1,36 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidepanel></app-sidepanel>
+        </div>
+        <div class="col-md-8">
+                <h3 class="text-center text-secondary">KarmaYoga : Applicant Student List</h3>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <th>Name</th>
+                  <th>Branch</th>
+                  <th>Class</th>
+                  <th>Mobile Number</th>
+                  <th>Approve</th>
+                  <th>Disapprove</th>                
+                </thead>
+                <ng-container *ngFor="let student of studentArray">
+                  <tr class="table-dark">
+                    <td>{{student.StudentName}}</td>
+                    <td>{{student.StudentBranch}}</td>
+                    <td>{{student.StudentClass}}</td>
+                    <td>{{student.StudentContactNumber}}</td>
+                    <td>
+                        <button class="btn btn-outline-success">Approve Profile</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger" (click)="onDelete(student.$key)">Disapprove Profile</button>
+                    </td>
+                  </tr>
+                </ng-container>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

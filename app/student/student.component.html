@@ -1,0 +1,61 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+                <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-striped table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-secondary"><h3>KarmaYoga</h3></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="!LoginAuthentication">
+                                            <td>
+                                                <button class="btn" routerLink="login">Login</button>  
+                                            </td>
+                                         </tr>
+                                         <tr *ngIf="!LoginAuthentication">
+                                             <td>
+                                                <button class="btn" routerLink="register">Register</button>
+                                             </td>
+                                         </tr>
+                                         <tr *ngIf="LoginAuthentication">
+                                            <td>
+                                               <button class="btn" routerLink="profile">Profile</button>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="LoginAuthentication">
+                                            <td>
+                                                <button class="btn" routerLink="find-work">Find Work</button>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="LoginAuthentication">
+                                            <td>
+                                                <button class="btn" routerLink="logout">Logout</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-center text-secondary">Welcome to KarmaYoga Student Panel.</h1>
+            <hr/>
+            <ul>
+                <li>
+                    <h5>How to apply for KarmaYoga earn and learn scheme : </h5>
+                </li>
+            </ul>
+            <ol>
+                <li>Sign up into KarmaYoga account so that you are able to use KarmaYoga Funcationality.</li>
+                <li>Fill profile form.</li>
+            </ol>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

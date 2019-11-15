@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidepanel></app-sidepanel>
+        </div>
+        <div class="col-md-8">
+            <h3 class="text-center text-secondary">KarmaYoga Login</h3>
+            <form [formGroup]="this.LoginService.form" (ngSubmit)="onSubmit()">
+                
+                <!--Username-->
+                <div class="form-group">
+                    <label>Username : </label>
+                    <input formControlName="TeacherUsername" type="email" class="form-control" placeholder="example@gmail.com" [ngClass]="{'is-invalid':formControls.TeacherUsername.touched && formControls.TeacherUsername.errors}">
+                    <div class="invalid-feedback" *ngIf="formControls.TeacherUsername.touched && formControls.TeacherUsername.errors">
+                        <label *ngIf="formControls.TeacherUsername.touched && formControls.TeacherUsername.errors.pattern">Please enter valid username.</label>
+                        <label *ngIf="formControls.TeacherUsername.touched && formControls.TeacherUsername.errors.required">Username field is required.</label>
+                    </div>
+                </div>
+
+                <!--Password-->
+                <div class="form-group">
+                    <label>Password : </label>
+                    <input formControlName="TeacherPassword" class="form-control" type="password" placeholder="Enter Password" [ngClass]="{'is-invalid':formControls.TeacherPassword.touched && formControls.TeacherPassword.errors}">
+                    <div class="invalid-feedback">
+                        <label>Password field is required.</label>
+                    </div>
+                </div>
+
+                <!--Submit-->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success" [disabled]="!this.LoginService.form.valid">Login</button>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

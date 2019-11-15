@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidepanel></app-sidepanel>
+        </div>
+        <div class="col-md-3">
+            
+            <h3 class="text-center text-secondary">Add Caste</h3>
+            <form [formGroup]="this.ManageCasteService.form" (ngSubmit)="onSubmit()"> 
+                
+                <input type="hidden" formControlName="$key">
+                
+                <div class="form-group">
+                    <input formControlName="AddCaste" type="text" class="form-control">
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success" [disabled]="!this.ManageCasteService.form.valid">Add Caste into KarmaYoga database.</button>
+                </div>
+
+            </form>
+
+            <div class="alert alert-info"  *ngIf="showSuccessMessage">
+                Caste get added into KarmaYoga Database.
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Caste Name</th>
+                        <th scope="col">Remove</th>
+                      </tr>
+                    </thead>
+    
+                    <tbody>       
+                        <ng-container *ngFor="let caste of CasteArray; let i = index">
+                            <tr>
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{caste.AddCaste}}</td>
+                                <td><button class="btn btn-danger" (click)="onDelete(caste.$key)">Remove Caste</button></td>
+                            </tr>
+                        </ng-container>                     
+                    </tbody>
+                </table>
+
+        </div>
+    </div>
+</div>

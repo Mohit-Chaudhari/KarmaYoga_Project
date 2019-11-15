@@ -1,0 +1,196 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidepanel></app-sidepanel>
+        </div>
+        <ng-container *ngIf="this.LoginAuthentication">
+                <div class="col-md-8">
+                        <h3 class="text-center text-secondary">KarmaYoga : Profile Form</h3>
+                        <h6 class="text-success text-center">(Hello student. Your Applicant ID : <u>APP{{AppicantID}}</u>)</h6>
+                        <form [formGroup]="this.ProfileService.form" (ngSubmit)="onSubmit()">
+            
+                            <!--Key-->
+                            <input type="hidden" formControlName="$key">
+
+                            <!--Username-->
+                            <input type="hidden" formControlName="UserName">
+                            
+                            <!--Student Name-->
+                            <div class="form-group">
+                                <label>Name : </label>
+                                <input formControlName="StudentName" type="text" class="form-control" [ngClass]="{'is-invalid':formControls.StudentName.touched && formControls.StudentName.errors}" placeholder="First Middle Last">
+                                <!--Student Name Validators-->
+                                <div class="invalid-feedback" *ngIf="formControls.StudentName.touched && formControls.StudentName.errors">
+                                    <label *ngIf="formControls.StudentName.touched && formControls.StudentName.errors.required">Name field is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Contact No-->
+                            <div class="form-group">
+                                <label>Contact Number : </label>
+                                <input formControlName="StudentContactNumber" type="tel" class="form-control" [ngClass]="{'is-invalid':formControls.StudentContactNumber.touched && formControls.StudentContactNumber.errors}">
+                                <!--Student Contact Number Validators-->
+                                <div class="invalid-feedback" *ngIf="formControls.StudentContactNumber.touched && formControls.StudentContactNumber.errors">
+                                    <label *ngIf="formControls.StudentContactNumber.touched && formControls.StudentContactNumber.errors.required">Contact number is required for further communication.</label>
+                                    <label *ngIf="formControls.StudentContactNumber.touched && formControls.StudentContactNumber.errors.minlength">Contact number should not be less than 10 numbers.</label>
+                                    <label *ngIf="formControls.StudentContactNumber.touched && formControls.StudentContactNumber.errors.maxlength">Contact number should not be greater than 10 numbers.</label>
+                                    <label *ngIf="formControls.StudentContactNumber.touched && formControls.StudentContactNumber.errors.pattern">Please use numbers.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Branch-->
+                            <div class="form-group">
+                                <label>Branch : </label>
+                                <select class="form-control" formControlName="StudentBranch" [ngClass]="{'is-invalid':formControls.StudentBranch.touched && formControls.StudentBranch.errors}">
+                                    <option *ngFor="let value of DepartmentArray.sort()">{{value.departmentname}}</option>
+                                </select>
+                                <!--Student Branch Validators-->
+                                <div class="invalid-feedback" *ngIf="formControls.StudentBranch.touched && formControls.StudentBranch.errors">
+                                    <label *ngIf="formControls.StudentBranch.touched && formControls.StudentBranch.errors.required">Branch field is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Class-->
+                            <div class="form-group">
+                                <label>Class : </label>
+                                <input formControlName="StudentClass" class="form-control" [ngClass]="{'is-invalid':formControls.StudentClass.touched && formControls.StudentClass.errors}">
+                                <!--Student Class Validators-->
+                                <div class="invalid-feedback" *ngIf="formControls.StudentClass.touched && formControls.StudentClass.errors">
+                                    <label *ngIf="formControls.StudentClass.touched && formControls.StudentClass.errors.required">Class field is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Roll Number-->
+                            <div class="form-group">
+                                <label>Roll Number : </label>
+                                <input formControlName="StudentRollNumber" type="number" class="form-control" [ngClass]="{'is-invalid':formControls.StudentRollNumber.touched && formControls.StudentRollNumber.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentRollNumber.touched && formControls.StudentRollNumber.errors">
+                                    <label *ngIf="formControls.StudentRollNumber.touched && formControls.StudentRollNumber.errors.required">Roll Number is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Caste-->
+                            <div class="form-group">
+                                <label>Caste : </label>
+                                <select formControlName="StudentCaste" class="form-control" [ngClass]="{'is-invalid':formControls.StudentCaste.touched && formControls.StudentCaste.errors}">
+                                    <option *ngFor="let value of CasteArray">{{value.AddCaste}}</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="formControls.StudentCaste.touched && formControls.StudentCaste.errors">
+                                    <label *ngIf="formControls.StudentCaste.touched && formControls.StudentCaste.errors.required">Caste field is required</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Bank Name-->
+                            <div class="form-group">
+                                <label>Bank Name : </label>
+                                <input formControlName="StudentBankName" class="form-control" [ngClass]="{'is-invalid':formControls.StudentBankName.touched && formControls.StudentBankName.errors}">
+                                <small class="text-warning">We only accepting <b class="text-primary">Bank Of Maharashtra</b> details.</small>
+                                <div class="invalid-feedback" *ngIf="formControls.StudentBankName.touched && formControls.StudentBankName.errors">
+                                    <label *ngIf="formControls.StudentBankName.touched && formControls.StudentBankName.errors.required"></label>
+                                </div>
+                            </div>
+            
+                            <!--Student Bank Account Number-->
+                            <div class="form-group">
+                                <label>Bank Account Number : </label>
+                                <input formControlName="StudentBankAccountNumber" class="form-control" [ngClass]="{'is-invalid':formControls.StudentBankAccountNumber.touched && formControls.StudentBankAccountNumber.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentBankAccountNumber.touched && formControls.StudentBankAccountNumber.errors">
+                                    <label *ngIf="formControls.StudentBankAccountNumber.touched && formControls.StudentBankAccountNumber.errors.required">Bank account number is required. As payment will done into given account number.</label>
+                                    <label *ngIf="formControls.StudentBankAccountNumber.touched && formControls.StudentBankAccountNumber.errors.minlength">Password should be greater than 8 characters.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Father Name-->
+                            <div class="form-group">
+                                <label>Father Name : </label>
+                                <input formControlName="StudentFatherName" class="form-control" [ngClass]="{'is-invalid':formControls.StudentFatherName.touched && formControls.StudentFatherName.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentFatherName.touched && formControls.StudentFatherName.errors">
+                                    <label *ngIf="formControls.StudentFatherName.touched && formControls.StudentFatherName.errors.required">Father name is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Father Contact Number-->
+                            <div class="form-group">
+                                <label>Father Contact Number : </label>
+                                <input formControlName="StudentFatherContactNumber" class="form-control" [ngClass]="{'is-invalid':formControls.StudentFatherContactNumber.touched && formControls.StudentFatherContactNumber.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentFatherContactNumber.touched && formControls.StudentFatherContactNumber.errors">
+                                    <label *ngIf="formControls.StudentFatherContactNumber.touched && formControls.StudentFatherContactNumber.errors.required">Father contact number is required.</label>
+                                    <label *ngIf="formControls.StudentFatherContactNumber.touched && formControls.StudentFatherContactNumber.errors.maxlength">Contact number should not be greater than 10 numbers.</label>
+                                    <label *ngIf="formControls.StudentFatherContactNumber.touched && formControls.StudentFatherContactNumber.errors.minlength">Contact number should not be less than 10 numbers.</label>
+                                    <label *ngIf="formControls.StudentFatherContactNumber.touched && formControls.StudentFatherContactNumber.errors.pattern">Please use numbers.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Mother Name-->
+                            <div class="form-group">
+                                <label>Mother Name : </label>
+                                <input formControlName="StudentMotherName" class="form-control" [ngClass]="{'is-invalid':formControls.StudentMotherName.touched && formControls.StudentMotherName.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentMotherName.touched && formControls.StudentMotherName.errors">
+                                    <label *ngIf="formControls.StudentMotherName.touched && formControls.StudentMotherName.errors.required">Mother name is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Mother Contact Number-->
+                            <div class="form-group">
+                                <label>Mother Contact Number : </label>
+                                <input formControlName="StudentMotherContactNumber" class="form-control" [ngClass]="{'is-invalid':formControls.StudentMotherContactNumber.touched && formControls.StudentMotherContactNumber.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentMotherContactNumber.touched && formControls.StudentMotherContactNumber.errors">
+                                    <label *ngIf="formControls.StudentMotherContactNumber.touched && formControls.StudentMotherContactNumber.errors.required">Contact number is required.</label>
+                                    <label *ngIf="formControls.StudentMotherContactNumber.touched && formControls.StudentMotherContactNumber.errors.maxlength">Contact number should not be greater than 10 numbers.</label>
+                                    <label *ngIf="formControls.StudentMotherContactNumber.touched && formControls.StudentMotherContactNumber.errors.minlength">Contact number should not be less than 10 numbers.</label>
+                                    <label *ngIf="formControls.StudentMotherContactNumber.touched && formControls.StudentMotherContactNumber.errors.pattern"></label>
+                                </div>
+                            </div>
+            
+                            <!--Student Current Address-->
+                            <div class="form-group">
+                                <label>Current Address : </label>
+                                <input formControlName="StudentCurrentAddress" class="form-control" [ngClass]="{'is-invalid':formControls.StudentCurrentAddress.touched && formControls.StudentCurrentAddress.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentCurrentAddress.touched && formControls.StudentCurrentAddress.errors">
+                                    <label *ngIf="formControls.StudentCurrentAddress.touched && formControls.StudentCurrentAddress.errors.required">Current address field should not be blank.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Permanent Address-->
+                            <div class="form-group">
+                                <label>Permanent Address : </label>
+                                <input formControlName="StudentPermanentAddress" class="form-control" [ngClass]="{'is-invalid':formControls.StudentPermanentAddress.touched && formControls.StudentPermanentAddress.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentPermanentAddress.touched && formControls.StudentPermanentAddress.errors">
+                                    <label *ngIf="formControls.StudentPermanentAddress.touched && formControls.StudentPermanentAddress.errors.required">Permanent address requierd.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Parent Occupation-->
+                            <div class="form-group">
+                                <label>Parent Occupation : </label>
+                                <input formControlName="StudentParentOccupation" class="form-control" [ngClass]="{'is-invalid':formControls.StudentParentOccupation.touched && formControls.StudentParentOccupation.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentParentOccupation.touched && formControls.StudentParentOccupation.errors">
+                                    <label *ngIf="formControls.StudentParentOccupation.touched && formControls.StudentParentOccupation.errors.required">Must fill parent occupation.</label>
+                                </div>
+                            </div>
+            
+                            <!--Student Parent Annual Income-->
+                            <div class="form-group">
+                                <label>Parent's Annual Income : </label>
+                                <input formControlName="StudentParentAnnualIncome" class="form-control" [ngClass]="{'is-invalid':formControls.StudentParentAnnualIncome.touched && formControls.StudentParentAnnualIncome.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentParentAnnualIncome.touched && formControls.StudentParentAnnualIncome.errors">
+                                    <label *ngIf="formControls.StudentParentAnnualIncome.touched && formControls.StudentParentAnnualIncome.errors.required">Annual income should be declared.</label>
+                                </div>
+                            </div>
+            
+                            <!--Save Profile Button-->
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success" [disabled]="!this.ProfileService.form.valid">Save Profile</button>
+                            </div>
+            
+                        </form>
+            
+                        <div class="alert alert-info"  *ngIf="showSuccessMessage">
+                            Congratulations your profile was saved successfully into KarmaYoga Database.
+                        </div>
+            
+                    </div>
+        </ng-container>
+        <div class="col-md-2"></div>
+    </div>
+</div>

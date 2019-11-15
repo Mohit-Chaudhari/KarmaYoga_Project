@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <h3 class="text-center text-secondary">KarmaYoga : Contact Us</h3><hr/>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label>Full Name : </label>
+                    <input formControlName="ContactFullName" [ngClass]="{'is-invalid': form.controls.ContactFullName.touched && form.controls.ContactFullName.errors}" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Email id : </label>
+                    <input formControlName="ContactEmail" [ngClass]="{'is-invalid': form.controls.ContactEmail.touched && form.controls.ContactEmail.errors}" type="email" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number : </label>
+                    <input formControlName="ContactMobile" [ngClass]="{'is-invalid': form.controls.ContactMobile.touched && form.controls.ContactMobile.errors}" type="tel" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Message : </label>
+                    <textarea formControlName="ContactMeassage" [ngClass]="{'is-invalid': form.controls.ContactMeassage.touched && form.controls.ContactMeassage.errors}" cols="50" rows="5" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group text-center">
+                    <button class="btn btn-success" [disabled]="!form.valid">Send Mesaage to KarmaYoga</button>
+                </div>
+
+            </form>
+
+            <div class="alert alert-info"  *ngIf="showSuccessMessage">
+                Your query is reported to KarmaYoga team. We will back you soon.
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

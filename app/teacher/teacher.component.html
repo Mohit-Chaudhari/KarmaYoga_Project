@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+                <br/>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <table class="table table-bordered table-striped table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-secondary"><h3>KarmaYoga</h3></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="!this.LoginAuthentication">
+                                        <td>
+                                            <button class="btn" routerLink="login">Login</button>  
+                                        </td>
+                                     </tr>
+                                     <tr *ngIf="!this.LoginAuthentication">
+                                         <td>
+                                            <button class="btn" routerLink="register">Register</button>
+                                         </td>
+                                     </tr>
+                                     <tr *ngIf="this.LoginAuthentication">
+                                        <td>
+                                           <button class="btn" routerLink="profile">Profile</button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="this.LoginAuthentication">
+                                        <td>
+                                            <button class="btn" routerLink="post-work">Post Work</button>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="this.LoginAuthentication">
+                                        <td>
+                                            <button class="btn" routerLink="logout">Logout</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-8">
+            <div class="container-fluid">
+                <h3 class="text-center text-secondary">
+                    Welcome to KarmaYoga Teacher Panel
+                </h3>
+                <hr/>
+                <ol>
+                    <li>Sign up into KarmaYoga System.</li>
+                    <li>Fill profile details.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

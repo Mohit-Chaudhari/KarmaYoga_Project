@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidepanel></app-sidepanel>
+        </div>
+        <div class="col-md-8">
+            
+            <h3 class="text-center text-secondary">KarmaYoga : Work Finder</h3><hr/>
+            <div class="alert alert-info" *ngIf="OperationSuccess">
+                Congratulations... You are successfully join this work.
+            </div>
+            <form [formGroup]="this.FindWorkService.form">
+                <input type="hidden" formControlName="$key" />
+                <input type="hidden" formControlName="TeacherName" />
+                <input type="hidden" formControlName="WorkingDepartment" />
+                <input type="hidden" formControlName="WrokDescription" />
+                <input type="hidden" formControlName="StartTime" />
+                <input type="hidden" formControlName="EndTime" />
+            </form>
+
+            <table class="table table-bordered table-striped table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>Professor Name</th>
+                            <th>Working Department</th>
+                            <th>Work Description</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Grab Work</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <ng-container *ngFor="let work of WorkArray">
+                                <tr>
+                                    <td>{{work.TeacherName}}</td>
+                                    <td>{{work.WorkingDepartment}}</td>
+                                    <td>{{work.WrokDescription}}</td>
+                                    <td>{{work.StartTime}}</td>
+                                    <td>{{work.EndTime}}</td>
+                                    <td>
+                                        <button class="btn btn-outline-success" (click)="JoinWork(work)">Join Work</button>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                    </tbody>
+            </table>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
