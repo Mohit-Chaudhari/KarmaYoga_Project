@@ -4,7 +4,8 @@
             <app-sidepanel></app-sidepanel>
         </div>
         <div class="col-md-8">
-            <h3 class="text-center text-secondary">KarmaYoga Profile</h3><hr/>
+            <h3 class="text-center text-secondary">KarmaYoga : Profile Form</h3><hr/>
+            <h6 class="text-success text-center">(Hello Teacher. Your Proffesor ID : <u>PROF{{ProfID}}</u>)</h6>
 
             <form [formGroup]="this.ProfileService.form" (ngSubmit)="onSubmit()">
 

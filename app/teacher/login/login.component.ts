@@ -35,37 +35,47 @@ export class LoginComponent implements OnInit {
   }
 
   //Fetching password
-  accessValueOfPass(Array:[])
+  accessPass(Array:[])
   {
     return Array['TeacherPassword'];
   }
 
   //Fetching Key
-  accessValueOfKey(Array : [])
+  accessKey(Array : [])
   {
     return Array['$key'];
   }
 
-  accessValueOfId(Array : [])
+  //Fetching Username
+  accessUsername(Array : [])
   {
     return Array['TeacherUsername'];
   }
 
+  //Fetching Proffessor ID
+  accessProfID(Array : [])
+  {
+    return Array['ProfId'];
+  }
+
+  //Function to work after pressing submit button.
   onSubmit()
   {
     for(this.i=0;this.i<this.LoginArray.length;this.i++)
     {
       console.log("In for loop of onsubmit of login");
-      if(this.formControls.TeacherUsername.value == this.accessValueOfId(this.LoginArray[this.i]) && this.formControls.TeacherPassword.value == this.accessValueOfPass(this.LoginArray[this.i]))
+      if(this.formControls.TeacherUsername.value == this.accessUsername(this.LoginArray[this.i]) && this.formControls.TeacherPassword.value == this.accessPass(this.LoginArray[this.i]))
       {
-        console.log("Key of given recors is : ",this.accessValueOfKey(this.LoginArray[this.i]));
+        console.log("Key of given recors is : ",this.accessKey(this.LoginArray[this.i]));
         console.log("Entered value : ",this.formControls.TeacherUsername.value);
-        console.log("Login Array id",this.accessValueOfId(this.LoginArray[this.i]));
+        console.log("Login Array id",this.accessUsername(this.LoginArray[this.i]));
+        console.log("Proffessor id : ",this.accessProfID(this.LoginArray[this.i]));
         this.CommonService.LoginId = this.formControls.TeacherUsername.value;
 
         //Setting local Storage
         localStorage.setItem('TeacherLoginId',this.CommonService.LoginId);
-        localStorage.setItem('key',this.accessValueOfKey(this.LoginArray[this.i]));
+        localStorage.setItem('key',this.accessKey(this.LoginArray[this.i]));
+        localStorage.setItem('ProfID',this.accessProfID(this.LoginArray[this.i]));
 
         //Reseting Form.
         this.LoginService.form.reset();

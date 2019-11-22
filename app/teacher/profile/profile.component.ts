@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   LoginAuthentication: string;
+  ProfID: string;
 
   constructor(private ProfileService: ProfileService, private router: Router) { }
 
@@ -41,9 +42,10 @@ export class ProfileComponent implements OnInit {
         }
       );
 
-      if(localStorage.getItem('TeacherLoginId'))
+      if(localStorage.getItem('TeacherLoginId') && localStorage.getItem('ProfID'))
       {
         this.LoginAuthentication = localStorage.getItem('TeacherLoginId');
+        this.ProfID = localStorage.getItem('ProfID')
       }
       else
       {
