@@ -13,7 +13,7 @@ export class ProfileService {
   departmentlist: AngularFireList<any>;
 
   form = new FormGroup({
-    $key: new FormControl('',[Validators.required]),
+    $key: new FormControl(''),
     TeacherFullName: new FormControl('',[Validators.required]),
     TeacherDepartment: new FormControl('',[Validators.required]),
     TeacherBio: new FormControl('',Validators.required)

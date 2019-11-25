@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   LoginAuthentication: string;
   ProfID: string;
+  ShowSuccessMessage: boolean;
 
   constructor(private ProfileService: ProfileService, private router: Router) { }
 
@@ -55,6 +56,16 @@ export class ProfileComponent implements OnInit {
           )
         );
       }
+  }
+
+  onSubmit()
+  {
+    if(this.ProfileService.form.valid)
+    {
+      this.ProfileService.SaveTeacherProfile(this.ProfileService.form.value);
+    }
+    this.ShowSuccessMessage = true;
+    setTimeout( () => this.ShowSuccessMessage = false, 5000);
   }
 
 }
