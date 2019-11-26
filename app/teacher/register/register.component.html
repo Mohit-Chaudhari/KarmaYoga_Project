@@ -3,66 +3,72 @@
         <div class="col-md-2">
             <app-sidepanel></app-sidepanel>
         </div>
-        <div class="col-md-8">
-            <h3 class="text-center text-secondary">KarmaYoga Registration Form</h3>
-            <form [formGroup]="this.RegisterService.form" (ngSubmit)="onSubmit()">
-                <!--Accepting Key-->
-                <input type="hidden" formControlName="$key">
+        <div class="col-md-8 card">
+            <br/><h3 class="text-center text-secondary card-title">KarmaYoga Registration Form</h3><hr/>
+            
+            <div class="card-body">
 
-                <!--Generating automatic applicant id-->
-                <input type="hidden" formControlName="ProfId">    
+                    <form [formGroup]="this.RegisterService.form" (ngSubmit)="onSubmit()">
+                            <!--Accepting Key-->
+                            <input type="hidden" formControlName="$key">
+            
+                            <!--Generating automatic applicant id-->
+                            <input type="hidden" formControlName="ProfId">    
+            
+                            <!--Email ID-->
+                            <div class="form-group">
+                                <label>Gmail id : </label>
+                                <input formControlName="TeacherUsername" type="email" class="form-control" placeholder="example@gmail.com" [ngClass]="{'is-invalid':formControls.TeacherUsername.errors && formControls.TeacherUsername.touched}">
+                                <!--Email id validator-->
+                                <div class="invalid-feedback" *ngIf="formControls.TeacherUsername.touched && formControls.TeacherUsername.errors">
+                                    <small *ngIf="formControls.TeacherUsername.errors.required">Please fill this field.</small>
+                                    <label *ngIf="formControls.TeacherUsername.errors.pattern">Please enter valid <b>Gmail</b> id.</label>
+                                </div>
+                                <div *ngIf="!formControls.TeacherUsername.valid">
+                                    <small class="text-warning">Please make sure that you are entering <b><u>Gmail</u></b> address.</small>
+                                </div>
+                                <div *ngIf="formControls.TeacherUsername.valid">
+                                    <small class="text-primary">Please consider your Gmail address as login-id.</small><br/>
+                                </div>
+                                <div *ngIf="formControls.TeacherUsername.touched">
+                                    <div *ngFor="let student of teacherArray">
+                                        <label class="text-danger" *ngIf="student.TeacherUsername==formControls.TeacherUsername.value">This Gmail id is already registerd. Please use another id.</label>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!--Password-->
+                            <div class="form-group">
+                                <label>Password : </label>
+                                <input formControlName="TeacherPassword" type="password" class="form-control" [ngClass]="{'is-invalid':formControls.TeacherPassword.touched && formControls.TeacherPassword.errors}">
+                                <!--Password Validator-->
+                                <div class="invalid-feedback" *ngIf="formControls.TeacherPassword.touched && formControls.TeacherPassword.errors">
+                                    <label *ngIf="formControls.TeacherPassword.errors.minlength && formControls.TeacherPassword.touched">Password lenght should be more than 6 letters.</label>
+                                    <label *ngIf="formControls.TeacherPassword.errors.required && formControls.TeacherPassword.touched">Password field is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Confirm Password-->
+                            <div class="form-group">
+                                <label>Confirm Password : </label>
+                                <input formControlName="TeacherConfirmPassword" type="password" class="form-control" [ngClass]="{'is-invalid':formControls.TeacherConfirmPassword.errors && formControls.TeacherConfirmPassword.touched}">
+                                <!--Confirm Password Validator-->
+                                <div class="invalid-feedback" *ngIf="formControls.TeacherConfirmPassword.errors && formControls.TeacherConfirmPassword.touched">
+                                    <label *ngIf="formControls.TeacherConfirmPassword.errors.minlength && formControls.TeacherConfirmPassword.touched">Password length should be minimum 6 characters long.</label>
+                                    <label *ngIf="formControls.TeacherConfirmPassword.errors.required && formControls.TeacherConfirmPassword.touched">This field should not be empty</label>
+                                    <label *ngIf="formControls.TeacherConfirmPassword.errors.MustMatch && formControls.TeacherConfirmPassword.touched">Password and Confirm password field should be same.</label>
+                                </div>
+                            </div>
+            
+                            <!--Submit Button-->
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success" [disabled]="!this.RegisterService.form.valid">Register Me</button>
+                            </div>
+            
+                        </form>
 
-                <!--Email ID-->
-                <div class="form-group">
-                    <label>Gmail id : </label>
-                    <input formControlName="TeacherUsername" type="email" class="form-control" placeholder="example@gmail.com" [ngClass]="{'is-invalid':formControls.TeacherUsername.errors && formControls.TeacherUsername.touched}">
-                    <!--Email id validator-->
-                    <div class="invalid-feedback" *ngIf="formControls.TeacherUsername.touched && formControls.TeacherUsername.errors">
-                        <small *ngIf="formControls.TeacherUsername.errors.required">Please fill this field.</small>
-                        <label *ngIf="formControls.TeacherUsername.errors.pattern">Please enter valid <b>Gmail</b> id.</label>
-                    </div>
-                    <div *ngIf="!formControls.TeacherUsername.valid">
-                        <small class="text-warning">Please make sure that you are entering <b><u>Gmail</u></b> address.</small>
-                    </div>
-                    <div *ngIf="formControls.TeacherUsername.valid">
-                        <small class="text-primary">Please consider your Gmail address as login-id.</small><br/>
-                    </div>
-                    <div *ngIf="formControls.TeacherUsername.touched">
-                        <div *ngFor="let student of teacherArray">
-                            <label class="text-danger" *ngIf="student.TeacherUsername==formControls.TeacherUsername.value">This Gmail id is already registerd. Please use another id.</label>
-                        </div>
-                    </div>
-                </div>
+            </div>
 
-                <!--Password-->
-                <div class="form-group">
-                    <label>Password : </label>
-                    <input formControlName="TeacherPassword" type="password" class="form-control" [ngClass]="{'is-invalid':formControls.TeacherPassword.touched && formControls.TeacherPassword.errors}">
-                    <!--Password Validator-->
-                    <div class="invalid-feedback" *ngIf="formControls.TeacherPassword.touched && formControls.TeacherPassword.errors">
-                        <label *ngIf="formControls.TeacherPassword.errors.minlength && formControls.TeacherPassword.touched">Password lenght should be more than 6 letters.</label>
-                        <label *ngIf="formControls.TeacherPassword.errors.required && formControls.TeacherPassword.touched">Password field is required.</label>
-                    </div>
-                </div>
-
-                <!--Confirm Password-->
-                <div class="form-group">
-                    <label>Confirm Password : </label>
-                    <input formControlName="TeacherConfirmPassword" type="password" class="form-control" [ngClass]="{'is-invalid':formControls.TeacherConfirmPassword.errors && formControls.TeacherConfirmPassword.touched}">
-                    <!--Confirm Password Validator-->
-                    <div class="invalid-feedback" *ngIf="formControls.TeacherConfirmPassword.errors && formControls.TeacherConfirmPassword.touched">
-                        <label *ngIf="formControls.TeacherConfirmPassword.errors.minlength && formControls.TeacherConfirmPassword.touched">Password length should be minimum 6 characters long.</label>
-                        <label *ngIf="formControls.TeacherConfirmPassword.errors.required && formControls.TeacherConfirmPassword.touched">This field should not be empty</label>
-                        <label *ngIf="formControls.TeacherConfirmPassword.errors.MustMatch && formControls.TeacherConfirmPassword.touched">Password and Confirm password field should be same.</label>
-                    </div>
-                </div>
-
-                <!--Submit Button-->
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-success" [disabled]="!this.RegisterService.form.valid">Register Me</button>
-                </div>
-
-            </form>
             <div class="alert alert-info"  *ngIf="showSuccessMessage">
                 Congratulations you are registered successfully into KarmaYoga Database.
             </div>

@@ -4,8 +4,12 @@
             <app-sidepanel></app-sidepanel>
         </div>
         <ng-container *ngIf="this.LoginAuthentication">
-                <div class="col-md-8">
-                        <h3 class="text-center text-secondary">KarmaYoga : Profile Form</h3>
+                <div class="col-md-8 card">
+                        <br/><h3 class="text-center text-secondary card-title">KarmaYoga : Profile Form</h3><hr/>
+
+                        <div class="card-body">
+
+                            
                         <h6 class="text-success text-center">(Hello student. Your Applicant ID : <u>APP{{AppicantID}}</u>)</h6>
                         <form [formGroup]="this.ProfileService.form" (ngSubmit)="onSubmit()">
             
@@ -184,6 +188,8 @@
                             </div>
             
                         </form>
+
+                        </div>
             
                         <div class="alert alert-info"  *ngIf="showSuccessMessage">
                             Congratulations your profile was saved successfully into KarmaYoga Database.

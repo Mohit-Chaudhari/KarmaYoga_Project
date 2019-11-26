@@ -3,35 +3,40 @@
         <div class="col-md-2">
             <app-sidepanel></app-sidepanel>
         </div>
-        <div class="col-md-8">
-            <h3 class="text-center text-secondary">KarmaYoga Login</h3>
-            <form [formGroup]="this.LoginService.form" (ngSubmit)="onSubmit()">
+        <div class="col-md-8 card">
+            <br/><h3 class="text-center text-secondary card-title">KarmaYoga : Login</h3><hr/>
+
+            <div class="card-body">
+
+                    <form [formGroup]="this.LoginService.form" (ngSubmit)="onSubmit()">
                 
-                <!--Username-->
-                <div class="form-group">
-                    <label>Username : </label>
-                    <input formControlName="StudentUserName" type="email" class="form-control" placeholder="example@gmail.com" [ngClass]="{'is-invalid':formControls.StudentUserName.touched && formControls.StudentUserName.errors}">
-                    <div class="invalid-feedback" *ngIf="formControls.StudentUserName.touched && formControls.StudentUserName.errors">
-                        <label *ngIf="formControls.StudentUserName.touched && formControls.StudentUserName.errors.pattern">Please enter valid username.</label>
-                        <label *ngIf="formControls.StudentUserName.touched && formControls.StudentUserName.errors.required">Username field is required.</label>
-                    </div>
-                </div>
+                            <!--Username-->
+                            <div class="form-group">
+                                <label>Username : </label>
+                                <input formControlName="StudentUserName" type="email" class="form-control" placeholder="example@gmail.com" [ngClass]="{'is-invalid':formControls.StudentUserName.touched && formControls.StudentUserName.errors}">
+                                <div class="invalid-feedback" *ngIf="formControls.StudentUserName.touched && formControls.StudentUserName.errors">
+                                    <label *ngIf="formControls.StudentUserName.touched && formControls.StudentUserName.errors.pattern">Please enter valid username.</label>
+                                    <label *ngIf="formControls.StudentUserName.touched && formControls.StudentUserName.errors.required">Username field is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Password-->
+                            <div class="form-group">
+                                <label>Password : </label>
+                                <input formControlName="StudentPassword" class="form-control" type="password" placeholder="Enter Password" [ngClass]="{'is-invalid':formControls.StudentPassword.touched && formControls.StudentPassword.errors}">
+                                <div class="invalid-feedback">
+                                    <label>Password field is required.</label>
+                                </div>
+                            </div>
+            
+                            <!--Submit-->
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success" [disabled]="!this.LoginService.form.valid">Login</button>
+                            </div>
+            
+                        </form>
 
-                <!--Password-->
-                <div class="form-group">
-                    <label>Password : </label>
-                    <input formControlName="StudentPassword" class="form-control" type="password" placeholder="Enter Password" [ngClass]="{'is-invalid':formControls.StudentPassword.touched && formControls.StudentPassword.errors}">
-                    <div class="invalid-feedback">
-                        <label>Password field is required.</label>
-                    </div>
-                </div>
-
-                <!--Submit-->
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-success" [disabled]="!this.LoginService.form.valid">Login</button>
-                </div>
-
-            </form>
+            </div>
 
         </div>
         <div class="col-md-2"></div>
